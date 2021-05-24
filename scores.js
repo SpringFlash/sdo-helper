@@ -5,21 +5,26 @@ function getAnsw() {
 
   let answers = {};
   for (let ans of answ_nodes) {
-    let answer = ans.querySelector(".answer");
+    const answer = ans.querySelector(".answer");
+    const name = ans.querySelector(".qtext").innerText;
     if (ans.classList.contains("multichoice")) {
+      let answObj = [];
       for (let el of answer.children) {
         let inp = el.querySelector("input");
-        if (inp.checked) answers[ans.id] = inp.id;
+        let lab = el.querySelector("label").innerText;
+        if (inp.checked) answObj.push(lab);
       }
+      answers[name] = answObj;
     } else if (ans.classList.contains("match")) {
       let answObj = {};
       const tbody = answer.children[0];
 
       for (const tr of tbody.children) {
+        const p = tr.querySelector(".text p").innerText;
         const choice = tr.querySelector("select");
-        answObj[choice.id] = choice.selectedIndex;
+        answObj[p] = choice.children[choice.selectedIndex].innerText;
       }
-      answers[ans.id] = answObj;
+      answers[name] = answObj;
     }
   }
 
@@ -29,12 +34,9 @@ function getAnsw() {
     .catch((e) => console.error(e));
 }
 
-const doc = document.querySelector(".quizreviewsummary");
-if (doc) {
-  const answBtn = document.createElement("button");
-  answBtn.innerText = "Скопировать ответы";
-  answBtn.onclick = getAnsw;
-  answBtn.classList.add("btn", "btn-primary");
-  answBtn.style.margin = "20px";
-  doc.append(answBtn);
-}
+const answBtn = document.createElement("button");
+answBtn.innerText = "Скопировать ответы";
+answBtn.onclick = getAnsw;
+answBtn.classList.add("btn", "btn-primary");
+answBtn.style.margin = "20px";
+document.querySelector(".quizreviewsummary").append(answBtn);
