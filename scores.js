@@ -14,7 +14,7 @@ function getAnsw() {
         const labelNode = el.querySelector("label");
         const label = labelNode.cloneNode(true);
         label.children[0].remove();
-        const lab = label.innerText;
+        const lab = label.innerText.replace(/\u00A0|^\s+|\s+$/g, "");
         if (inp.checked) answObj.push(lab);
       }
       answers[name] = answObj;
