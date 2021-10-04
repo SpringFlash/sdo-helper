@@ -7,13 +7,16 @@ function getAnsw() {
   for (let ans of answ_nodes) {
     const answer = ans.querySelector(".answer");
     const name = ans.querySelector(".qtext").innerText;
-    if (ans.classList.contains("multichoice")) {
+    if (
+      ans.classList.contains("multichoice") ||
+      ans.classList.contains("truefalse")
+    ) {
       let answObj = [];
       for (let el of answer.children) {
         let inp = el.querySelector("input");
         const labelNode = el.querySelector("label");
         const label = labelNode.cloneNode(true);
-        label.children[0].remove();
+        label.children[0]?.remove();
         const lab = label.innerText.replace(/\u00A0|^\s+|\s+$/g, "");
         if (inp.checked) answObj.push(lab);
       }
@@ -28,6 +31,9 @@ function getAnsw() {
         answObj[p] = choice.children[choice.selectedIndex].innerText;
       }
       answers[name] = answObj;
+    } else if (ans.classList.contains("shortanswer")) {
+      const inputValue = ans.querySelector(".form-control").value;
+      answers[name] = inputValue;
     }
   }
 

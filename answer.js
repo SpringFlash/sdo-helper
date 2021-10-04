@@ -9,12 +9,15 @@ function pasteAnsw(val) {
     const name = ans.querySelector(".qtext").innerText;
     const answObj = answers[name];
     if (!answObj) continue;
-    if (ans.classList.contains("multichoice")) {
+    if (
+      ans.classList.contains("multichoice") ||
+      ans.classList.contains("truefalse")
+    ) {
       for (let el of answer.children) {
         let inp = el.querySelector(`input:not([type="hidden"])`);
         const labelNode = el.querySelector("label");
         const label = labelNode.cloneNode(true);
-        label.children[0].remove();
+        label.children[0]?.remove();
         const lab = label.innerText.replace(/\u00A0|^\s+|\s+$/g, "");
         if (answObj.includes(lab)) {
           inp.checked = true;
@@ -30,6 +33,8 @@ function pasteAnsw(val) {
           if (el.innerText == answObj[p]) choice.selectedIndex = ind;
         });
       }
+    } else if (ans.classList.contains("shortanswer")) {
+      ans.querySelector(".form-control").value = answers[name];
     }
   }
 }
