@@ -12,9 +12,13 @@ function pasteAnsw(val) {
     if (ans.classList.contains("multichoice")) {
       for (let el of answer.children) {
         let inp = el.querySelector(`input:not([type="hidden"])`);
-        let lab = el.querySelector("label").innerText;
-        if (answObj.includes(lab)) inp.checked = true;
-        console.log(lab, " ", inp.checked);
+        const labelNode = el.querySelector("label");
+        const label = labelNode.cloneNode(true);
+        label.children[0].remove();
+        const lab = label.innerText;
+        if (answObj.includes(lab)) {
+          inp.checked = true;
+        }
       }
     } else if (ans.classList.contains("match")) {
       const tbody = answer.children[0];

@@ -9,19 +9,27 @@
     "default_icon": "question.png",
     "default_popup": "output.html"
   },
-  "content_scripts": [{
+  "icons": {
+    "512": "question.png"
+  },
+  "content_scripts": [
+    {
       "matches": [
         "file:///*",
         "https://sdo.srspu.ru/mod/quiz/review*"
       ],
-      "js": ["scores.js"]
+      "js": [
+        "scores.js"
+      ]
     },
     {
       "matches": [
         "file:///*",
         "https://sdo.srspu.ru/mod/quiz/attempt*"
       ],
-      "js": ["answer.js"]
+      "js": [
+        "answer.js"
+      ]
     }
   ],
   "permissions": [

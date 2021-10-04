@@ -11,7 +11,10 @@ function getAnsw() {
       let answObj = [];
       for (let el of answer.children) {
         let inp = el.querySelector("input");
-        let lab = el.querySelector("label").innerText;
+        const labelNode = el.querySelector("label");
+        const label = labelNode.cloneNode(true);
+        label.children[0].remove();
+        const lab = label.innerText;
         if (inp.checked) answObj.push(lab);
       }
       answers[name] = answObj;
