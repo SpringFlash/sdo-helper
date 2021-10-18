@@ -20,7 +20,7 @@ function getAnsw() {
         const lab = label.innerText.replace(/\u00A0|^\s+|\s+$/g, "");
         if (inp.checked) answObj.push(lab);
       }
-      answers[name] = answObj;
+      answers[name] = answObj.concat(answers[name] || []);
     } else if (ans.classList.contains("match")) {
       let answObj = {};
       const tbody = answer.children[0];
@@ -30,7 +30,7 @@ function getAnsw() {
         const choice = tr.querySelector("select");
         answObj[p] = choice.children[choice.selectedIndex].innerText;
       }
-      answers[name] = answObj;
+      answers[name] = Object.assign(answObj, answers[name] || {});
     } else if (ans.classList.contains("shortanswer")) {
       const inputValue = ans.querySelector(".form-control").value;
       answers[name] = inputValue;
