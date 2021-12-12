@@ -14,25 +14,15 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "file:///*",
-        "https://sdo.srspu.ru/mod/quiz/review*"
-      ],
-      "js": [
-        "scores.js"
-      ]
+      "matches": ["file:///*", "https://sdo.srspu.ru/mod/quiz/review*"],
+      "js": ["scores.js"]
     },
     {
-      "matches": [
-        "file:///*",
-        "https://sdo.srspu.ru/mod/quiz/attempt*"
-      ],
-      "js": [
-        "answer.js"
-      ]
+      "matches": ["file:///*", "https://sdo.srspu.ru/mod/quiz/attempt*"],
+      "js": ["answer.js"],
+      "css": ["answer.css"]
     }
   ],
-  "permissions": [
-    "clipboardWrite"
-  ]
+  "permissions": ["clipboardWrite", "storage"],
+  "web_accessible_resources": ["gear.svg", "google.png"]
 }
