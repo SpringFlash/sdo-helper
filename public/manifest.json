@@ -1,16 +1,16 @@
 {
   "manifest_version": 2,
   "name": "SDO Tests Helper",
-  "description": "Скатай ответы используя очко",
-  "version": "0.0.1",
+  "description": "Помощник для выполнения тестов SDO SRSPU.",
+  "version": "0.2.0",
   "author": "SpringFlash",
   "browser_action": {
     "default_title": "Ответы к тесту, автоматик",
-    "default_icon": "question.png",
+    "default_icon": "assets/question.png",
     "default_popup": "output.html"
   },
   "icons": {
-    "512": "question.png"
+    "512": "assets/question.png"
   },
   "content_scripts": [
     {
@@ -20,9 +20,9 @@
     {
       "matches": ["file:///*", "https://sdo.srspu.ru/mod/quiz/attempt*"],
       "js": ["answer.js"],
-      "css": ["answer.css"]
+      "css": ["/assets/index.css"]
     }
   ],
   "permissions": ["clipboardWrite", "storage"],
-  "web_accessible_resources": ["gear.svg", "google.png"]
+  "web_accessible_resources": ["/assets/*"]
 }

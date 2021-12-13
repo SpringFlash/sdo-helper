@@ -1,64 +1,6 @@
-/* ----------------------------------------- src/getters ------------------------------------------ */
-function getQuestionsNodes(type) {
-  const selectors = {
-    get: '.questionflagsaveform',
-    paste: '#responseform',
-  };
-  return [...document.querySelector(selectors[type]).children[0].children].filter((el) =>
-    el.classList.contains('que')
-  );
-}
+import { getQuestionsNodes, getQuestionType, getLabel } from '../../Helpers/getters';
+import { pasteChooseAnswer, pasteMatchAnswer, pasteShortAnswer } from '../../Helpers/parsers';
 
-function getQuestionType(question) {
-  const variants = {
-    multichoice: 'choose',
-    truefalse: 'choose',
-    match: 'match',
-    shortanswer: 'shortanswer',
-    numerical: 'shortanswer',
-  };
-
-  return Object.entries(variants).find((variant) => question.classList.contains(variant[0]))?.[1];
-}
-
-function getLabel(element) {
-  const labelNode = element.querySelector('label').cloneNode(true);
-  labelNode.children[0]?.remove();
-  return labelNode.innerText.replace(/\u00A0|^\s+|\s+$/g, '').trim();
-}
-
-/* ---------------------------------------- src/pasters --------------------------------------------*/
-function pasteChooseAnswer(answer, answerForQuestion) {
-  for (const variant of answer.children) {
-    const label = getLabel(variant);
-    if (!answerForQuestion.includes(label)) {
-      continue;
-    }
-    const checkBox = variant.querySelector(`input:not([type="hidden"])`);
-    checkBox.checked = true;
-  }
-}
-
-function pasteMatchAnswer(answer, answerForQuestion) {
-  const table = answer.children[0];
-
-  for (const row of table.children) {
-    const rowName = row.querySelector('.text p').innerText;
-    const choice = row.querySelector('select');
-    const rightIndex = [...choice.children].findIndex(
-      (el) => el.innerText == answerForQuestion[rowName]
-    );
-    if (rightIndex !== -1) {
-      choice.selectedIndex = rightIndex;
-    }
-  }
-}
-
-function pasteShortAnswer(answer, answerForQuestion) {
-  answer.querySelector('.form-control').value = answerForQuestion;
-}
-
-/* ------------------------------------- src/PasteAnswers.js ----------------------------- */
 function addSearchLink(nameNode) {
   const url = new URL('https://google.com/search');
   url.searchParams.set('q', nameNode.innerText);

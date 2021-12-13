@@ -21,7 +21,7 @@ button.btn.paste-answers-btn.disabled {
   top: 0;
   left: 0;
   background-color: #bccad0;
-  background-image: url('chrome-extension://__MSG_@@extension_id__/gear.svg');
+  background-image: url('chrome-extension://__MSG_@@extension_id__/assets/gear.svg');
   z-index: 2;
   background-size: 46px 46px;
   background-repeat: no-repeat;
@@ -99,8 +99,8 @@ button.btn.paste-answers-btn.disabled {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-image: url('chrome-extension://__MSG_@@extension_id__/google.png');
-  background-position: 3.5px 3.5px;
+  background-image: url('chrome-extension://__MSG_@@extension_id__/assets/google.png');
+  background-position: center;
   background-size: 20px;
   background-repeat: no-repeat;
   background-color: #fff;
