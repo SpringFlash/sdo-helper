@@ -1,3 +1,5 @@
+import { getLabel } from './getters';
+
 export function getChooseAnswer(answer, currentAnswer) {
   const arrayOfAnswers = [];
   for (let variant of answer.children) {
