@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hey</title>
-</head>
-
-<body>
-    <h1>Скатать ответы легко!</h1>
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="popup.css" />
+    <title>SDO-Helper</title>
+  </head>
+  <body>
+    <h1>Соединить ответы в одну базу</h1>
+    <div class="areas">
+      <textarea name="first-json" id="first-json" class="json-area"></textarea>
+      <p>+</p>
+      <textarea name="second-json" id="second-json" class="json-area"></textarea>
+      <div class="additional-areas"></div>
+    </div>
+    <p id="info"></p>
+    <button id="add-field" class="btn">+</button>
+    <button id="concate" class="btn">Соединить ответы</button>
+    <template id="additional-area-template">
+      <div class="addition-area-container">
+        <p>+</p>
+        <div>
+          <textarea class="addition-area json-area"></textarea>
+          <button class="remove-area btn">x</button>
+        </div>
+      </div>
+    </template>
+  </body>
 </html>

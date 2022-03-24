@@ -4,8 +4,8 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    // popup: './src/popup.js',
-    backgroud: './src/backgroud.js',
+    popup: './src/Popup/popup.js',
+    background: './src/background.js',
     scores: './src/ContentScripts/GetAnswers/index.js',
     answer: './src/ContentScripts/PasteAnswers/index.js',
   },
@@ -24,6 +24,10 @@ module.exports = {
             presets: ['@babel/preset-env'],
           },
         },
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },

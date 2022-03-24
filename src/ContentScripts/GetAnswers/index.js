@@ -42,10 +42,9 @@ function renderUI() {
   answBtn.onclick = parseAnswersToJSON;
   answBtn.classList.add('btn', 'btn-primary');
   answBtn.style.margin = '20px 0';
-  document.querySelector('.quizreviewsummary').append(answBtn);
+  document.querySelector('.quizreviewsummary')?.append(answBtn);
 }
 
 window.addEventListener('load', () => {
-  console.log('asd');
   renderUI();
 });

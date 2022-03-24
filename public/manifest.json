@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "SDO Tests Helper",
   "description": "Помощник для выполнения тестов SDO SRSPU.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "SpringFlash",
   "browser_action": {
     "default_title": "Ответы к тесту, автоматик",

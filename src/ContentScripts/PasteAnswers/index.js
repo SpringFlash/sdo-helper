@@ -2,17 +2,28 @@ import { getQuestionsNodes, getQuestionType, getLabel } from '../../Helpers/gett
 import { pasteChooseAnswer, pasteMatchAnswer, pasteShortAnswer } from '../../Helpers/parsers';
 
 function addSearchLink(nameNode) {
-  const url = new URL('https://google.com/search');
-  url.searchParams.set('q', nameNode.innerText);
+  const searchUrls = [
+    { url: 'https://google.com/search', param: 'q', class: 'google' },
+    { url: 'https://yandex.ru/search', param: 'text', class: 'yandex' },
+    { url: 'https://duckduckgo.com', param: 'q', class: 'duckduckgo' },
+  ];
 
-  const searchButton = document.createElement('button');
-  searchButton.classList.add('google-search-button');
-  const link = document.createElement('a');
-  link.href = url;
-  link.target = '_blank';
+  const searchButtons = document.createElement('div');
+  searchButtons.classList.add('search-buttons');
 
-  searchButton.append(link);
-  nameNode.append(searchButton);
+  for (const search of searchUrls) {
+    const url = new URL(search.url);
+    url.searchParams.set(search.param, nameNode.innerText);
+
+    const link = document.createElement('a');
+    link.target = '_blank';
+    link.href = url;
+
+    link.classList.add(search.class);
+    searchButtons.append(link);
+  }
+
+  nameNode.append(searchButtons);
 }
 
 function setLinks() {
