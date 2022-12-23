@@ -1,10 +1,15 @@
+import axios from 'axios';
 import {
   getQuestionsNodes,
   getQuestionType,
-  getJsonWithAnswers,
+  copyJsonWithAnswers,
   getAnswerGrade,
-} from '../../Helpers/getters';
-import { getChooseAnswer, getMatchAnswer, getShortAnswer } from '../../Helpers/parsers';
+  getChooseAnswer,
+  getMatchAnswer,
+  getShortAnswer,
+  createBtn,
+  downloadJson,
+} from '../../Helpers';
 
 function parseAnswersToJSON() {
   const questionsNodes = getQuestionsNodes('get');
@@ -33,16 +38,23 @@ function parseAnswersToJSON() {
     }, [])
   );
 
-  getJsonWithAnswers(JSON.stringify(answers));
+  return answers;
 }
 
-function renderUI() {
-  const answBtn = document.createElement('button');
-  answBtn.innerText = 'Скопировать ответы';
-  answBtn.onclick = parseAnswersToJSON;
-  answBtn.classList.add('btn', 'btn-primary');
-  answBtn.style.margin = '20px 0';
-  document.querySelector('.quizreviewsummary')?.append(answBtn);
+async function renderUI() {
+  const answBtn = createBtn('Скопировать ответы', ['btn', 'btn-primary', 'copy-btn'], () => {
+    const answers = parseAnswersToJSON();
+    copyJsonWithAnswers(answers);
+  });
+  const saveAnswBtn = createBtn('', ['btn', 'btn-primary', 'save-btn'], () => {
+    const answers = parseAnswersToJSON();
+    downloadJson(answers, 'Ответы');
+  });
+
+  const div = document.createElement('div');
+  div.className = 'actions-buttons';
+  div.append(answBtn, saveAnswBtn);
+  document.querySelector('.quizreviewsummary')?.append(div);
 }
 
 window.addEventListener('load', () => {

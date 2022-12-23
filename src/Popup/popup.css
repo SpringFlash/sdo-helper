@@ -10,6 +10,13 @@ h1 {
   border-bottom: 1px solid #999;
 }
 
+.d-flex {
+  display: flex;
+  margin: 0 auto;
+  gap: 10px;
+  width: fit-content;
+}
+
 .areas {
   margin: 0 auto;
   width: 350px;
@@ -71,6 +78,10 @@ p {
 
 #add-field.btn {
   background: #47de6d;
+}
+
+#clear-all {
+  background: #de4747;
 }
 
 .addition-area-container div {

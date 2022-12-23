@@ -20,30 +20,10 @@ export function getQuestionType(question) {
   return Object.entries(variants).find((variant) => question.classList.contains(variant[0]))?.[1];
 }
 
-export function getJsonWithAnswers(text) {
-  writeToClipboard({
-    text,
-    thenFunc: () => alert('Скопировано!'),
-    catchFunc: (e) => {
-      console.error(e);
-    },
-  });
-}
-
-export function writeToClipboard({ text, thenFunc, catchFunc }) {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(text).then(thenFunc).catch(catchFunc);
-  } else {
-    window.clipboardData.setData('text', text);
-  }
-}
-
 export function getAnswerGrade(question) {
   return question
     .querySelector('.grade')
-    .innerText.split(':')[1]
-    .split('из')
-    .map((el) => parseInt(el));
+    .map((el) => parseInt(el)).filter(!isNaN);
 }
 
 export function getLabel(element) {

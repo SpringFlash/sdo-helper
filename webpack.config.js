@@ -2,13 +2,31 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
+const entryForAll = ['@babel/polyfill'];
+const getEntry = (entries) => {
+  const newEntries = Object.entries(entries).map(([outName, value]) => {
+    const newValue =
+      typeof value === 'string'
+        ? {
+            import: [...entryForAll, value],
+          }
+        : {
+            ...value,
+            import: [...entryForAll, value.import],
+          };
+
+    return [outName, newValue];
+  });
+
+  return Object.fromEntries(newEntries);
+};
+
 module.exports = {
-  entry: {
+  entry: getEntry({
     popup: './src/Popup/popup.js',
-    background: './src/background.js',
     scores: './src/ContentScripts/GetAnswers/index.js',
     answer: './src/ContentScripts/PasteAnswers/index.js',
-  },
+  }),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',

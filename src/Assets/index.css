@@ -1,10 +1,33 @@
-button.btn.paste-answers-btn {
+.actions-buttons {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+button.btn.paste-answers-btn, button.btn.copy-btn, button.btn.save-btn {
   border-radius: 5px;
   margin-right: 20px;
   transition: .3s all;
   height: 50px;
   padding-top: 0;
   padding-bottom: 0;
+}
+
+button.btn.save-btn, button.btn.upload-btn {
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center;
+  width: 50px;
+  aspect-ratio: 1;
+  display: block;
+}
+
+button.btn.upload-btn {
+  background-image: url('chrome-extension://__MSG_@@extension_id__/assets/icons/upload.svg');
+}
+
+button.btn.save-btn {
+  background-image: url('chrome-extension://__MSG_@@extension_id__/assets/icons/download.svg');
 }
 
 button.btn.paste-answers-btn.disabled {
@@ -21,7 +44,7 @@ button.btn.paste-answers-btn.disabled {
   top: 0;
   left: 0;
   background-color: #bccad0;
-  background-image: url('chrome-extension://__MSG_@@extension_id__/assets/gear.svg');
+  background-image: url('chrome-extension://__MSG_@@extension_id__/assets/icons/gear.svg');
   z-index: 2;
   background-size: 46px 46px;
   background-repeat: no-repeat;
@@ -127,17 +150,17 @@ button.btn.paste-answers-btn.disabled {
 }
 
 .search-buttons a.google {
-  background-image: url('chrome-extension://__MSG_@@extension_id__/assets/google.png');
+  background-image: url('chrome-extension://__MSG_@@extension_id__/assets/icons/google.png');
   background-color: #fff;
   background-size: 20px;
 }
 
 .search-buttons a.yandex {
-  background-image: url('chrome-extension://__MSG_@@extension_id__/assets/yandex.png');
+  background-image: url('chrome-extension://__MSG_@@extension_id__/assets/icons/yandex.png');
   background-size: 110%;
 }
 
 .search-buttons a.duckduckgo {
-  background-image: url('chrome-extension://__MSG_@@extension_id__/assets/duckduckgo.png');
+  background-image: url('chrome-extension://__MSG_@@extension_id__/assets/icons/duckduckgo.png');
   background-color: #fff;
 }
