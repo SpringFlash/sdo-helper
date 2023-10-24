@@ -4,16 +4,19 @@
   margin: 20px 0;
 }
 
-button.btn.paste-answers-btn, button.btn.copy-btn, button.btn.save-btn {
+button.btn.paste-answers-btn,
+button.btn.copy-btn,
+button.btn.save-btn {
   border-radius: 5px;
   margin-right: 20px;
-  transition: .3s all;
+  transition: 0.3s all;
   height: 50px;
   padding-top: 0;
   padding-bottom: 0;
 }
 
-button.btn.save-btn, button.btn.upload-btn {
+button.btn.save-btn,
+button.btn.upload-btn {
   background-repeat: no-repeat;
   background-size: 30px;
   background-position: center;
@@ -37,7 +40,8 @@ button.btn.paste-answers-btn.disabled {
   border: 0;
 }
 
-.custom-paste-answers-btn, .custom-paste-answers-btn:focus {
+.custom-paste-answers-btn,
+.custom-paste-answers-btn:focus {
   width: 50px;
   height: 50px;
   position: absolute;
@@ -60,7 +64,7 @@ button.btn.paste-answers-btn.disabled {
   position: relative;
   display: flex;
   align-items: end;
-  transition: .3s all;
+  transition: 0.3s all;
   border-radius: 5px;
   box-shadow: inset 0 0 0 2px #bccad0;
 }
@@ -82,7 +86,8 @@ button.btn.paste-answers-btn.disabled {
   background-position: center left;
 }
 
-.submit-custom-json, .submit-custom-json:focus {
+.submit-custom-json,
+.submit-custom-json:focus {
   z-index: 1;
   position: absolute;
   width: 150px;
@@ -102,7 +107,8 @@ button.btn.paste-answers-btn.disabled {
   display: block;
 }
 
-.custom-json-field, .custom-json-field:focus {
+.custom-json-field,
+.custom-json-field:focus {
   display: block;
   width: 100%;
   resize: none;
@@ -133,7 +139,7 @@ button.btn.paste-answers-btn.disabled {
   max-height: 100%;
 }
 
-.search-buttons a {
+.search-buttons > * {
   display: block;
   border-radius: 50%;
   background-position: center;
@@ -145,7 +151,7 @@ button.btn.paste-answers-btn.disabled {
   background-color: #777;
 }
 
-.search-buttons a:not(:first-child) {
+.search-buttons > *:not(:first-child) {
   margin-top: 3px;
 }
 
@@ -162,5 +168,10 @@ button.btn.paste-answers-btn.disabled {
 
 .search-buttons a.duckduckgo {
   background-image: url('chrome-extension://__MSG_@@extension_id__/assets/icons/duckduckgo.png');
+  background-color: #fff;
+}
+
+.search-buttons button.gpt-prompt {
+  background-image: url('chrome-extension://__MSG_@@extension_id__/assets/icons/gpt-logo.png');
   background-color: #fff;
 }

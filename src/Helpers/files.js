@@ -8,8 +8,7 @@ export function download(content, fileName, contentType) {
 
 export function downloadJson(content, name) {
   try {
-    const json = JSON.stringify(content);
-    download(json, `${name}.json`, 'application/json');
+    download(content, `${name}.json`, 'application/json');
   } catch (e) {
     console.error('Downloading JSON error:', e);
   }

@@ -38,22 +38,25 @@ function parseAnswersToJSON() {
     }, [])
   );
 
-  return answers;
+  return JSON.stringify(answers);
 }
 
 async function renderUI() {
-  const answBtn = createBtn('Скопировать ответы', ['btn', 'btn-primary', 'copy-btn'], () => {
+  const answerBtn = createBtn('Скопировать ответы', ['btn', 'btn-primary', 'copy-btn'], () => {
     const answers = parseAnswersToJSON();
     copyJsonWithAnswers(answers);
   });
-  const saveAnswBtn = createBtn('', ['btn', 'btn-primary', 'save-btn'], () => {
+  const saveAnswerBtn = createBtn('', ['btn', 'btn-primary', 'save-btn'], () => {
     const answers = parseAnswersToJSON();
-    downloadJson(answers, 'Ответы');
+
+    const testNameLi = document.querySelector('.breadcrumb-item:last-child');
+    const fileName = testNameLi.innerText.trim();
+    downloadJson(answers, fileName);
   });
 
   const div = document.createElement('div');
   div.className = 'actions-buttons';
-  div.append(answBtn, saveAnswBtn);
+  div.append(answerBtn, saveAnswerBtn);
   document.querySelector('.quizreviewsummary')?.append(div);
 }
 

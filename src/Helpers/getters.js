@@ -23,7 +23,10 @@ export function getQuestionType(question) {
 export function getAnswerGrade(question) {
   return question
     .querySelector('.grade')
-    .map((el) => parseInt(el)).filter(!isNaN);
+    .innerText.split(':')[1]
+    .split('из')
+    .map((el) => parseInt(el))
+    .filter((el) => !isNaN(el));
 }
 
 export function getLabel(element) {

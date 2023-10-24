@@ -8,6 +8,7 @@ import {
   createBtn,
   upload,
   readFile,
+  writeToClipboard,
 } from '../../Helpers';
 
 function addSearchLink(nameNode) {
@@ -31,6 +32,23 @@ function addSearchLink(nameNode) {
     link.classList.add(search.class);
     searchButtons.append(link);
   }
+
+  const answerBlock = nameNode.parentNode.querySelector('.ablock');
+  const [prompt, answers] = answerBlock.innerText.split(':');
+
+  const copyGptButton = document.createElement('button');
+  copyGptButton.classList.add('gpt-prompt');
+
+  const gptPostfix =
+    'В ответ пришли только JSON-формат типа:\n`{answer: [""], description: ""}`\nГде answer - это массив с буквами выбранных вариантов, description - описание выбора';
+  const textForGpt = `${nameNode.innerText.trim()}\n${prompt}, но объясни почему:${answers}\n${gptPostfix}`;
+
+  copyGptButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    writeToClipboard({ text: textForGpt });
+  });
+
+  searchButtons.append(copyGptButton);
 
   nameNode.append(searchButtons);
 }
